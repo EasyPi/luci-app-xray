@@ -18,6 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # x86_64 (x86/64)        
           - id: "24.10"
             arch: x86_64
             sdk_url_path: https://downloads.openwrt.org/releases/24.10.8/targets/x86/64
@@ -26,6 +27,46 @@ jobs:
             arch: x86_64
             sdk_url_path: https://downloads.openwrt.org/releases/25.12.6/targets/x86/64
             sdk_name: -sdk-25.12.6-x86-64_
+
+          # mipsel_24kc (ramips/mt7621)
+          - id: "24.10"
+            arch: mipsel_24kc
+            sdk_url_path: https://downloads.openwrt.org/releases/24.10.8/targets/ramips/mt7621
+            sdk_name: -sdk-24.10.8-ramips-mt7621_
+          - id: "25.12"
+            arch: mipsel_24kc
+            sdk_url_path: https://downloads.openwrt.org/releases/25.12.6/targets/ramips/mt7621
+            sdk_name: -sdk-25.12.6-ramips-mt7621_
+
+          # mipsel_24kc (ramips/mt76x8)
+          - id: "24.10"
+            arch: mipsel_24kc
+            sdk_url_path: https://downloads.openwrt.org/releases/24.10.8/targets/ramips/mt76x8
+            sdk_name: -sdk-24.10.8-ramips-mt76x8_
+          - id: "25.12"
+            arch: mipsel_24kc
+            sdk_url_path: https://downloads.openwrt.org/releases/25.12.6/targets/ramips/mt76x8
+            sdk_name: -sdk-25.12.6-ramips-mt76x8_
+
+          # arm_cortex-a9_vfpv3-d16 (mvebu/cortexa9)
+          - id: "24.10"
+            arch: arm_cortex-a9_vfpv3-d16
+            sdk_url_path: https://downloads.openwrt.org/releases/24.10.8/targets/mvebu/cortexa9
+            sdk_name: -sdk-24.10.8-mvebu-cortexa9_
+          - id: "25.12"
+            arch: arm_cortex-a9_vfpv3-d16
+            sdk_url_path: https://downloads.openwrt.org/releases/25.12.6/targets/mvebu/cortexa9
+            sdk_name: -sdk-25.12.6-mvebu-cortexa9_
+
+          # arm_cortex-a7_neon-vfpv4 (typically ipq40xx/generic; replace target if your device belongs to another platform)
+          - id: "24.10"
+            arch: arm_cortex-a7_neon-vfpv4
+            sdk_url_path: https://downloads.openwrt.org/releases/24.10.8/targets/ipq40xx/generic
+            sdk_name: -sdk-24.10.8-ipq40xx-generic_
+          - id: "25.12"
+            arch: arm_cortex-a7_neon-vfpv4
+            sdk_url_path: https://downloads.openwrt.org/releases/25.12.6/targets/ipq40xx/generic
+            sdk_name: -sdk-25.12.6-ipq40xx-generic_
 
     env:
       SDK_URL_PATH: ${{ matrix.sdk_url_path }}
